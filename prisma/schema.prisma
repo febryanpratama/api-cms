@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:@localhost:3306/incore_cronjob"
+}
+
+enum Type {
+  keywords
+  description
+}
+
+enum isDownloaded {
+  yes
+  no
+}
+
+
+model Application {
+  id        Int      @id @default(autoincrement())
+  name      String
+  metaAis   MetaAi[]
+  artikels  Artikel[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model MetaAi {
+  id        Int      @id @default(autoincrement())
+  type     Type
+  keyword   String @db.LongText
+  applicationId Int
+  application Application @relation(fields: [applicationId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model Artikel {
+  id        Int      @id @default(autoincrement())
+  applicationId Int
+  title     String
+  content   String @db.LongText
+  image     String
+  isDownloaded isDownloaded
+  application Application @relation(fields: [applicationId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
