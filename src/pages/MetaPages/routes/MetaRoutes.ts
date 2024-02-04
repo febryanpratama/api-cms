@@ -4,6 +4,7 @@ import MetaController from "../controllers/MetaController";
 
 class MetaRoutes extends BaseRoutes {
     public routes() : void {
+        this.router.get('/:id', MetaController.indexMeta);
         this.router.post('/store', MetaController.storeMeta);
     }
 }

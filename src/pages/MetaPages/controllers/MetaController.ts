@@ -13,6 +13,26 @@ interface InterfaceMeta {
 
 class MetaController {
 
+    public indexMeta = async (req: Request, res: Response) : Promise<Response> => {
+        try {
+            const navigation = req.params.id;
+            console.log(navigation);
+            const data = await prisma.metaAi.findMany({
+                where: {
+                    applicationId: parseInt(navigation)
+                }
+            });
+            return ResponseCode.successGet(res, data);
+        } catch (error:any) {
+            return ResponseCode.error(res, {
+                code: 500,
+                status: false,
+                message: error.message,
+                result: null
+            })
+        }
+    }
+
     public storeMeta = async (req: Request, res: Response) : Promise<Response> => {
 
         const {application_id, type, keyword } = req.body;
@@ -25,9 +45,9 @@ class MetaController {
                 result: null
             })
 
-            const checkApp = await prisma.metaAi.findFirst({
+            const checkApp = await prisma.application.findFirst({
                 where: {
-                    applicationId: application_id,
+                    id: application_id,
                 }
             })
 

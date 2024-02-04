@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import path from 'path';
 import ApplicationRoutes from './pages/ApplicationPages/routes/ApplicationRoutes';
 import MetaRoutes from './pages/MetaPages/routes/MetaRoutes';
+import ExportRoutes from './pages/ExportPages/routes/ExportRoutes';
 
 
 
@@ -44,6 +45,7 @@ class App {
 
         this.app.use('/api/application', ApplicationRoutes)
         this.app.use('/api/meta-ai', MetaRoutes)
+        this.app.use('/api/export-artikel', ExportRoutes)
     }
 }
 

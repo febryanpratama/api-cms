@@ -8,6 +8,19 @@ const prisma = new PrismaClient();
 
 class ApplcationController {
 
+    public indexApp = async (req: Request, res: Response) : Promise<Response> => {
+        try {
+            const data = await prisma.application.findMany();
+            return ResponseCode.successGet(res, data);
+        } catch (error:any) {
+            return ResponseCode.error(res, {
+                code: 500,
+                status: false,
+                message: error.message,
+                result: null
+            })
+        }
+    }
     public storeApp = async (req: Request, res: Response) : Promise<Response> => {
 
         const {name} = req.body;

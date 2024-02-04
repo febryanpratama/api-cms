@@ -5,6 +5,7 @@ import ApplicationController from "../controllers/ApplicationController";
 
 class ApplicationRoutes extends BaseRoutes {
     public routes() : void {
+        this.router.get('/', ApplicationController.indexApp);
         this.router.post('/store', ApplicationController.storeApp);
     }
 }
