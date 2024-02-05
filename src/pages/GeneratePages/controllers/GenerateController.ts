@@ -144,7 +144,7 @@ class GenerateController {
                     "title": "Kegiatan Kantor",
                 },
             ]
-
+            
             let promptImage = "sebagai seorang graphic designer profesional, buatkan gambar tanpa ada teks di dalam gambar, dengan size maksimal 100kb dengan deskripsi berikut : "+ketImage[Math.floor(Math.random() * ketImage.length)].title;
 
             const responseImage : any = await GenerateRepository.generateImage(res, promptImage);
@@ -168,6 +168,7 @@ class GenerateController {
             })
 
             return ResponseCode.successGet(res, storeData);
+            // return ResponseCode.successGet(res, getRandMeta);
         }catch(err: any){
             return ResponseCode.error(res, {
                 code : 500,
