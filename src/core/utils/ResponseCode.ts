@@ -30,7 +30,7 @@ class ResponseResult {
             errorCode : props.code,
             status : false,
             message : props.message,
-            data : props.result
+            result : props.result
         } );
     }
 }
