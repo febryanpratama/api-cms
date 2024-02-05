@@ -11,9 +11,9 @@ CREATE TABLE `Application` (
 -- CreateTable
 CREATE TABLE `MetaAi` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `type` ENUM('keywords', 'description') NOT NULL,
+    `keyword` LONGTEXT NOT NULL,
     `applicationId` INTEGER NOT NULL,
-    `type` ENUM('keywords', 'descripstion') NOT NULL,
-    `keyword` VARCHAR(191) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
