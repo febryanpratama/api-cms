@@ -145,7 +145,7 @@ class GenerateController {
                 },
             ]
             
-            let promptImage = "sebagai seorang graphic designer profesional, buatkan gambar tanpa ada teks di dalam gambar, dengan size maksimal 100kb dengan deskripsi berikut : "+ketImage[Math.floor(Math.random() * ketImage.length)].title;
+            let promptImage = "Sebagai seorang graphic designer profesional, buatkan gambar tanpa huruf, tanpa angka, tanpa tanda baca, dengan size maksimal 100kb dengan deskripsi aktivitas "+ketImage[Math.floor(Math.random() * ketImage.length)].title;
 
             const responseImage : any = await GenerateRepository.generateImage(res, promptImage);
 
