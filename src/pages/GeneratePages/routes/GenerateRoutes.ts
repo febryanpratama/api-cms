@@ -7,7 +7,7 @@ class GenerateRoutes extends BaseRoutes {
     public routes() : void {
         this.router.post('/text', GenerateController.generateAiText);
         this.router.post('/image', GenerateController.generateAiImage);
-        this.router.post('/artikel', GenerateController.generateArtikel);
+        this.router.get('/artikel/:id', GenerateController.generateArtikel);
     }
 }
 

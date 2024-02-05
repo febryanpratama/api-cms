@@ -90,7 +90,7 @@ class GenerateController {
     }
 
     public generateArtikel = async(req: Request, res: Response) : Promise<Response> => {
-        const {application_id} = req.body;
+        const application_id : number = Number(req.params.id);
         try{
 
             if(!application_id) return ResponseCode.error(res, {
