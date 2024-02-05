@@ -121,7 +121,7 @@ class GenerateController {
                 result : null
             })
 
-            let prompt :string = "sebagai seorang profesional pembuat konten web, tolong buatkan suatu artikel dan sajikan dalam maksimal 50 kata dan dibagi menjadi tiga paragraf serta sajikan dalam bentuk code WYSIWYG untuk tampil di halaman pertama mesin pencarian berdasarkan deskripsi berikut ini: " + getRandMeta.keyword;
+            let prompt :string = "sebagai seorang profesional pembuat konten web, tolong buatkan suatu artikel dan sajikan dalam maksimal 500 kata dan dibagi menjadi tiga paragraf serta sajikan dalam bentuk code html code untuk tampil di halaman pertama mesin pencarian berdasarkan deskripsi berikut ini: " + getRandMeta.keyword;
 
 
             const respText : any = await GenerateRepository.generateText(res, prompt);
@@ -130,7 +130,22 @@ class GenerateController {
 
             const respTitle : any = await GenerateRepository.generateText(res, promptTitle);
 
-            let promptImage = "sebagai seorang graphic designer profesional, buatkan gambar tanpa ada teks di dalam gambar, dengan size maksimal 100kb dengan deskripsi berikut : Kantor Pusat, Berikat";
+            const ketImage = [
+                {
+                    "title": "Kantor Pusat",
+                },
+                {
+                    "title": "Berikat",
+                },
+                {
+                    "title": "Ekonomi",
+                },
+                {
+                    "title": "Kegiatan Kantor",
+                },
+            ]
+
+            let promptImage = "sebagai seorang graphic designer profesional, buatkan gambar tanpa ada teks di dalam gambar, dengan size maksimal 100kb dengan deskripsi berikut : "+ketImage[Math.floor(Math.random() * ketImage.length)].title;
 
             const responseImage : any = await GenerateRepository.generateImage(res, promptImage);
 
@@ -153,7 +168,6 @@ class GenerateController {
             })
 
             return ResponseCode.successGet(res, storeData);
-            // return ResponseCode.successGet(res, getRandMeta);
         }catch(err: any){
             return ResponseCode.error(res, {
                 code : 500,

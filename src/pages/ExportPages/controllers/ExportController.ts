@@ -17,6 +17,24 @@ class ExporController {
                     isDownloaded: 'no'
                 },
             });
+
+            if(data.length === 0) return ResponseCode.error(res, {
+                code: 404,
+                status: false,
+                message: 'Data not found',
+                result: null
+            })
+
+            for (let index = 0; index < data.length; index++) {
+                await prisma.artikel.update({
+                    where: {
+                        id: data[index].id
+                    },
+                    data: {
+                        isDownloaded: 'yes'
+                    }
+                })
+            }
             return ResponseCode.successGet(res, data);
         } catch (error:any) {
             return ResponseCode.error(res, {
