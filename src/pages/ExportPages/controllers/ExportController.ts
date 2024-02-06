@@ -45,6 +45,35 @@ class ExporController {
             })
         }
     }
+
+    public showExport = async (req: Request, res: Response) : Promise<Response> => {
+        try {
+            const navigation = req.params.id;
+            const data = await prisma.artikel.findMany({
+                where: {
+                    applicationId: parseInt(navigation),
+                    isDownloaded: 'yes'
+                },
+            });
+
+            if(data.length === 0) return ResponseCode.error(res, {
+                code: 404,
+                status: false,
+                message: 'Data not found',
+                result: null
+            })
+
+            return ResponseCode.successGet(res, data);
+            
+        } catch (error:any) {
+            return ResponseCode.error(res, {
+                code: 500,
+                status: false,
+                message: error.message,
+                result: null
+            })
+        }
+    }
 }
 
 export default new ExporController();
