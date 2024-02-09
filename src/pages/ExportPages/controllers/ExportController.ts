@@ -52,7 +52,7 @@ class ExporController {
             const data = await prisma.artikel.findMany({
                 where: {
                     applicationId: parseInt(navigation),
-                    isDownloaded: 'yes'
+                    // isDownloaded: 'yes'
                 },
             });
 
